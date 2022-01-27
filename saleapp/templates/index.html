@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>HHHH</h1>
+    <h5>{{message}}</h5>
+
+    <form method="get">
+        <input type="text" name="keyword" placeholder="Nhap tu khoa">
+        <input type="submit" value ="tim kiem">
+    </form>
+
+
+    <ul>
+        {% for u in users %}
+        <li>{{ u.name }} - {{u.email}}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <form action="/login" method="post">
+        <input type="text" placeholder="username" name="username">
+        <input type="password" placeholder="password" name="password">
+        <input type="submit" value="login">
+    </form>
+
+    <hr>
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="avatar">
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>
