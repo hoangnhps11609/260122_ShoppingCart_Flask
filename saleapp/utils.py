@@ -21,20 +21,21 @@ def update_Item_in_Cart(id, quantity):
     sql = """
        UPDATE CartItem
            SET 
-                id = ?
+                quantity = ?
            WHERE 
-               quantity = ?
+               id = ?
     """
-    conn.execute(sql, (id, quantity))
+    print(int(id) + quantity)
+    conn.execute(sql, (quantity, int(id), ))
     conn.commit()
 
 def delete_Item_in_Cart(id):
     conn = sqlite3.connect("data/cart.db")
     sql = """
        DELETE FROM CartItem
-      WHERE id = ? 
+      WHERE id = ?
     """
-    conn.execute(sql, id)
+    conn.execute(sql, (int(id), ))
     conn.commit()
 
 if __name__ == "__main__":
