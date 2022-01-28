@@ -24,25 +24,17 @@ def get_cart():
 def add_product(product_id, quantity):
     n = random.randint(0, 9999)
     utils.add_Item_in_Cart(random, product_id, quantity)
-    rows = utils.get_Item("Select * from cartItem")
-    data = []
-    for r in rows:
-        data.append({
-            "id": r[0],
-            "productId": r[1],
-            "price": r[2],
-            "quantity": r[3],
-            "subtotal": r[4]
-        })
-    return jsonify({"cartItem": data})
+    return get_cart()
 
-@app.route("/cartItem", methods=["PUT"])
-def updateQuantity():
-    pass
+@app.route("/cartItem/update/<id>/<int:quantity>", methods=["PUT"])
+def updateQuantity(id, quantity):
+    utils.update_Item_in_Cart(id, quantity)
+    return get_cart()
 
-@app.route("/cartItem", methods=["DELETE"])
-def deleteItem():
-    pass
+@app.route("/cartItem/delete/<id>", methods=["DELETE"])
+def deleteItem(id):
+    utils.delete_Item_in_Cart(id)
+    return get_cart()
 
 if __name__ == "__main__":
     app.run()
