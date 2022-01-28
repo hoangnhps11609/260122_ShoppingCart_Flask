@@ -1,11 +1,15 @@
 import sqlite3
 
+
+#get all
 def get_Item(query):
     conn = sqlite3.connect("data/cart.db")
     data = conn.execute(query).fetchall()
     conn.close()
     return data
 
+
+#add product in cart
 def add_Item_in_Cart(id, productId, quantity):
     conn = sqlite3.connect("data/cart.db")
     product = get_Item('select * from product where id like "1"')
@@ -16,6 +20,8 @@ def add_Item_in_Cart(id, productId, quantity):
     conn.execute(sql, (id, product[0][0], product[0][2], quantity, product[0][2]*quantity))
     conn.commit()
 
+    
+#update item in cart    
 def update_Item_in_Cart(id, quantity):
     conn = sqlite3.connect("data/cart.db")
     sql = """
@@ -29,6 +35,8 @@ def update_Item_in_Cart(id, quantity):
     conn.execute(sql, (quantity, int(id), ))
     conn.commit()
 
+    
+#delete item in cart
 def delete_Item_in_Cart(id):
     conn = sqlite3.connect("data/cart.db")
     sql = """
