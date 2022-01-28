@@ -3,6 +3,8 @@ from sqlalchemy.orm import relationship
 
 from saleapp import db
 
+
+#Model Product
 class Product(db.Model):
     __tablename__ = 'product'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -10,6 +12,7 @@ class Product(db.Model):
     price = Column(Float, nullable=False)
     cartItem = relationship('CartItem', backref="product", lazy=True)
 
+#Model Cart
 class Cart(db.Model):
     __tablename__ = 'cart'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -19,6 +22,7 @@ class Cart(db.Model):
     cartItem = relationship('CartItem', backref="cart", lazy=True)
     userId = db.Column(Integer, ForeignKey('user.id'), nullable=False)
 
+#Model CartItem
 class CartItem(db.Model):
     __tablename__ = 'cartItem'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -28,6 +32,9 @@ class CartItem(db.Model):
     productId = db.Column(Integer, ForeignKey(Product.id), nullable=False)
     cartId = db.Column(Integer, ForeignKey('cart.id'), nullable=False)
 
+    
+    
+#Model User
 class User(db.Model):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True, autoincrement=True)
