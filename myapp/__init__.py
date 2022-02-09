@@ -1,5 +1,4 @@
-
-from flask import Flask, request, jsonify, make_response
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -10,3 +9,7 @@ app.config['SECRET_KEY'] = 'thisissecret'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/hgny/Desktop/Python/JWT_API_Cart/cart.db'
 
 db = SQLAlchemy(app)
+
+from myapp import cartController
+from myapp import userController
+from myapp import login
