@@ -17,7 +17,6 @@ def get_all_users(current_user):
 
     users = User.query.all()
     output = []
-    print(current_user)
     for user in users:
         user_data = {}
         user_data['id'] = user.id
@@ -42,10 +41,7 @@ def get_one_user(current_user, id):
     return jsonify({'user' : user_data})
 
 @app.route('/user', methods=['POST'])
-@token_required
-def create_user(current_user):
-    if not current_user:
-        return jsonify({'message': 'Cannot perforn that function!'})
+def create_user():
     data = request.get_json()
     hashed_password = generate_password_hash(data['password'], method='sha256')
     uid = str(uuid.uuid4())

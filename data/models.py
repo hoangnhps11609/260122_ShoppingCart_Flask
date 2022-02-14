@@ -23,3 +23,10 @@ class CartItem(db.Model):
     quantity = db.Column(db.Integer)
     cartId = db.Column(db.String(50))
     productId = db.Column(db.String(50))
+
+class Order(db.Model):
+    id = db.Column(db.String(50), primary_key=True)
+    amount = db.Column(db.Float)
+    merchantId = db.Column(db.String(50))
+    signature = db.Column(db.String(50))
+    status = db.Column(db.String(50))

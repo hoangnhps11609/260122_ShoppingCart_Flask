@@ -12,4 +12,5 @@ db = SQLAlchemy(app)
 
 from myapp import cartController
 from myapp import userController
+from myapp import orderController
 from myapp import login

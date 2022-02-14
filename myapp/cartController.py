@@ -38,10 +38,13 @@ def get_cartInfo(current_user):
     subtotal = 0.0
     for cartItem in cartItems:
         subtotal += cartItem.subtotal
+    cart.subtotal = subtotal
+    cart.total = subtotal + (subtotal/cart.vat)
+    db.session.commit()
     cartlist = {}
     cartlist['id'] = cart.id
     cartlist['subtotal'] = subtotal
-    cartlist['total'] = subtotal - (subtotal/cart.vat)
+    cartlist['total'] = subtotal + (subtotal/cart.vat)
     cartlist['vat'] = cart.vat
     return jsonify(cartlist)
 
